@@ -8,10 +8,10 @@ spec:
     - to:
         - ipBlock:
             #  gcloud container clusters describe <YOUR-CLUSTER> --format="value(servicesIpv4Cidr)"
-            cidr: 10.0.0.0/14  # servicesIpv4Cidr  block (modify if necessary)
+            cidr: 34.118.224.0/20   # servicesIpv4Cidr  block (modify if necessary)
         - ipBlock:
             # gcloud container clusters describe <YOUR-CLUSTER> --format="value(clusterIpv4Cidr)"
-            cidr: 34.118.224.0/20  # clusterIpv4Cidr block (modify if necessary)
+            cidr: 10.0.0.0/14  # clusterIpv4Cidr block (modify if necessary)
         - ipBlock:
             # Not sure if we need this for egress
             # kubectl get ing cjoc  -o json | jq -r '.status.loadBalancer.ingress[0].ip'
