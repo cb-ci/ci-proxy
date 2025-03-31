@@ -78,7 +78,7 @@ Master:
     * In Java system properties, the pipe `|` character is used to separate different non-proxy hosts
     * escape the pipe `|` character with `\` 
     * When using Helm values:
-      * You NEED to escape it with backslashes like this `\|` , otherwise it leads you to an `command not found` error during cjoc startup.
+      * You NEED to escape it with backslashes like this `\|` , otherwise it leads you to a [command not found error](#command-not-found) during Operations Center startup.
     * When NOT using Helm values:
       * If you adjust the `-Dhttp.nonProxyHosts` on the Jenkins Web UI, the `\` escape character before the `|`delimiter is optional
   * IP Address Ranges:
@@ -96,7 +96,7 @@ Master:
     * However, here https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/cloudbees-ci-on-modern-cloud-platforms/considerations-for-http-proxy-configuration#_resolution it says it should work!?
 * `HTTP_PROXY`, `HTTPS_PROXY` , `NO_PROXY`
   * use just the variables with uppercase
-  * mixed with lower case like `http_proxy`,  `https_proxy` , `no_proxy` leads to `UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local`
+  * mixed with lower case like `http_proxy`,  `https_proxy` , `no_proxy` leads to [UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local](#unknownhostexception-httpsquid-dev-proxysquidsvcclusterlocal)
   * See also [State of proxy variable today](https://about.gitlab.com/blog/2021/01/27/we-need-to-talk-no-proxy/)
 
 # Step2: CasC Operations Center
@@ -196,7 +196,7 @@ Here are some issues i have seen:
 
 ## command not found
 
-Without the `\` escape character in the helm values you will get an `command not found` error as shown below during the start of cjoc
+Without the `\` escape character in the helm values you will get an `command not found` error as shown below during the start of CjoC
 
 ```
 ://squid-dev-proxy.squid.svc.cluster.local -Dhttps.proxyPort=3128 -Dhttp.proxyHost=http://squid-dev-proxy.squid.svc.cluster.local -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=127.0.0.1
