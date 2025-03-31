@@ -146,6 +146,7 @@ jenkins:
       127.0.0.1
       *.svc.cluster.local
       *.beescloud.com
+    port: 3128
 ```
 # Step4: Ephemeral Agents (pod) 
 
