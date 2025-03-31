@@ -275,9 +275,24 @@ Usage: java [options] <mainclass> [args...]
 
 ## UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local
 
-* `HTTP_PROXY`, `HTTPS_PROXY`
+* required to set  `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
   * use just the variables with uppercase
   * A mix lower case like `http_proxy` `https_proxy` leads to `UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local`
+
+```
+Mar 31, 2025 8:57:59 AM INFO com.cloudbees.opscenter.server.model.OperationsCenter$ClientListenerImpl onHeadersReceived
+Refusing connection from 10.0.0.37/10.0.0.37:41980 with client identity c2:ff:da:bd:23:06:0a:ad:40:0e:f0:57:2c:8a:3f:c6 on https://dev.sda.acaternberg.flow-training.beescloud.com/sample/ to controller sample (idName: 2-sample) because the controller state is not currently accepting connections: ManagedMaster{id=2, name='sample', encodedName='sample', idName='2-sample', timeStamp=0, grantId='69357650-4fb8-4e8b-8db9-25df2313786d', approved=true, localHome='null', localEndpoint=https://dev.sda.acaternberg.flow-training.beescloud.com/sample/, identity=null}
+Mar 31, 2025 8:57:59 AM INFO com.cloudbees.opscenter.server.model.OperationsCenter$ClientListenerImpl onHeadersReceived
+Refusing connection from 10.0.0.41/10.0.0.41:39998 with client identity fa:d7:1a:6a:a8:b3:9b:78:88:bb:e0:4f:ac:3e:48:34 on https://dev.sda.acaternberg.flow-training.beescloud.com/casc-child/ to controller casc-child (idName: 7-casc-child) because the controller state is not currently accepting connections: ManagedMaster{id=7, name='casc-child', encodedName='casc-child', idName='7-casc-child', timeStamp=0, grantId='03d31aeb-d96a-45cc-b45e-8955b8baffa6', approved=true, localHome='null', localEndpoint=https://dev.sda.acaternberg.flow-training.beescloud.com/casc-child/, identity=null}
+Mar 31, 2025 8:57:59 AM INFO org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer onRecv
+[OperationsCenter2 connection from 10.0.0.37/10.0.0.37:41980] Refusing headers from remote: The controller 2-sample is not currently accepting connections
+Mar 31, 2025 8:57:59 AM INFO org.jenkinsci.remoting.protocol.impl.ConnectionHeadersFilterLayer onRecv
+[OperationsCenter2 connection from 10.0.0.41/10.0.0.41:39998] Refusing headers from remote: The controller 7-casc-child is not currently accepting connections
+Mar 31, 2025 8:58:04 AM WARNING com.cloudbees.masterprovisioning.kubernetes.KubernetesMasterProvisioning getActualSpec
+Unable to retrieve statefulset
+java.net.UnknownHostException: http://squid-dev-proxy.squid.svc.cluster.local
+```
+
 
 ---
 
