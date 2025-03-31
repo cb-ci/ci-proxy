@@ -278,7 +278,7 @@ Usage: java [options] <mainclass> [args...]
 * required to set  `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`
   * use just the variables with uppercase
   * A mix lower case like `http_proxy` `https_proxy` leads to `UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local`
-
+  * missing vars `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` in helm values leads to the following issue
 ```
 Mar 31, 2025 8:57:59 AM INFO com.cloudbees.opscenter.server.model.OperationsCenter$ClientListenerImpl onHeadersReceived
 Refusing connection from 10.0.0.37/10.0.0.37:41980 with client identity c2:ff:da:bd:23:06:0a:ad:40:0e:f0:57:2c:8a:3f:c6 on https://dev.sda.acaternberg.flow-training.beescloud.com/sample/ to controller sample (idName: 2-sample) because the controller state is not currently accepting connections: ManagedMaster{id=2, name='sample', encodedName='sample', idName='2-sample', timeStamp=0, grantId='69357650-4fb8-4e8b-8db9-25df2313786d', approved=true, localHome='null', localEndpoint=https://dev.sda.acaternberg.flow-training.beescloud.com/sample/, identity=null}
