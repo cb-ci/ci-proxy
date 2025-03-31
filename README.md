@@ -192,7 +192,7 @@ The Pipeline log shows that squid proxy is used:
 ....
 ```
 
-## Pipeline with missing proxy settings
+## Pipeline missing proxy settings
 
 On the other hand, a pipeline missing proxy settings will time out, as expected, due to Network Policies blocking all outbound traffic.
 See [Jenkinsfile-no-proxy.groovy](Jenkinsfile-no-proxy.groovy)
