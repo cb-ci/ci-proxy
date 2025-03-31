@@ -3,10 +3,10 @@
 
 CloudBees CI Proxy configurations required in 
 
-* Step1: Helm values
-* Step2: CasC Operations Center 
-* Step3: CasC Controller
-* Step4: Ephemeral Agents (pod.yaml)
+* Step1: [Helm values](#step1-helm-values)
+* Step2: [CasC Operations Center](#step2-casc-operations-center)
+* Step3: [CasC Controller](#step3-casc-controller)
+* Step4: [Ephemeral Agents (pod.yaml)](#step4-ephemeral-agents-pod)
 
 I tested this successfully with CasC bundles during a helm deploy wit CasC SCM Retriever enabled
 
