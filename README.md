@@ -61,7 +61,7 @@ OperationsCenter:
      -Dhttp.nonProxyHosts=localhost\|127.0.0.1\|*.svc.cluster.local\|*.beescloud.com
 Master:
   Enabled: true
-  # These properties will be exposed to https://ci.yourdomain.com/cjoc/manage/masterProvisioning/  -> Global Java Options
+  # These properties will be exposed to https://<CJOC_URL>/manage/masterProvisioning/  -> Global Java Options
   # Global Java options enforced on startup by system property or environment variable MASTER_GLOBAL_JAVA_OPTIONS:
   JavaOpts:
     -Dhttps.proxyHost=http://squid-dev-proxy.squid.svc.cluster.local
@@ -107,6 +107,7 @@ jenkins.yaml
 
 ```
 jenkins:
+  # settings for https://<CJOC_URL>/manage/configure -> HTTP Proxy Configuration
   proxy:
     name: "squid-dev-proxy.squid.svc.cluster.local"
     noProxyHost: |-
@@ -117,6 +118,7 @@ jenkins:
     port: 3128
 masterprovisioning:
   kubernetes:
+    # These environment variables  will be exposed to https://<CJOC_URL>/manage/masterProvisioning/  -> Global Environment Variables
     envVars: |-
       HTTP_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
       HTTPS_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
@@ -136,6 +138,7 @@ jenkins.yaml
 
 ```
 jenkins:
+  # settings for https://<CONTROLLER_URL>/manage/configure -> HTTP Proxy Configuration
   proxy:
     name: "squid-dev-proxy.squid.svc.cluster.local"
     noProxyHost: |-
