@@ -145,9 +145,11 @@ jenkins:
 # Step4: Ephemeral Agents (pod) 
 
 An agent pod template requires Proxy settings
-See for the full example
-* [Jenkinsfile-proxy.groovy](Jenkinsfile-proxy.groovy) 
-* [Jenkinsfile-no-proxy.groovy](Jenkinsfile-no-proxy.groovy) 
+
+## Pipeline with proxy settings
+
+A curl request with sufficient proxy settings pass the proxy successfully
+See [Jenkinsfile-proxy.groovy](Jenkinsfile-proxy.groovy) 
 
 ```
 ...
@@ -188,6 +190,38 @@ The Pipeline log shows that squid proxy is used:
 > 
 < HTTP/1.1 200 Connection established
 ....
+```
+
+## Pipeline with missing proxy settings
+
+On the other hand, a pipeline missing proxy settings will time out, as expected, due to Network Policies blocking all outbound traffic.
+See [Jenkinsfile-no-proxy.groovy](Jenkinsfile-no-proxy.groovy)
+
+```
++ curl -D- https://www.google.com
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+............
+  0     0    0     0    0     0      0      0 --:--:--  0:04:59 --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:--  0:05:00 --:--:--     0
+curl: (28) Connection timed out after 300753 milliseconds
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // retry
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 28
+Policies were not applied to this pipeline
+Finished: FAILURE
 ```
 
 # Seen Issues
