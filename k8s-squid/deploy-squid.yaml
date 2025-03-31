@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: squid
+  name: squid-dev-proxy
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: squid-dev-proxy
+  template:
+    metadata:
+      labels:
+        app: squid-dev-proxy
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: squid-dev-config
+      containers:
+        - name: squid-dev-proxy
+          image: sameersbn/squid:latest
+          ports:
+            - containerPort: 3128
+          volumeMounts:
+            - name: config
+              mountPath: /etc/squid/
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: squid
+  name: squid-dev-proxy
+spec:
+  ports:
+    - protocol: TCP
+      port: 3128
+      targetPort: 3128
+  selector:
+    app: squid-dev-proxy
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: squid-dev-config
+  namespace: squid
+data:
+  squid.conf: |
+    http_port 3128
+    acl all src all
+    cache_log /dev/null
+    cache deny all
+    http_access allow all

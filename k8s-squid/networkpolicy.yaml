@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-egress
+spec:
+  podSelector: {}
+  egress:
+    - to:
+        - ipBlock:
+            #  gcloud container clusters describe <YOUR-CLUSTER> --format="value(servicesIpv4Cidr)"
+            cidr: 10.0.0.0/14  # servicesIpv4Cidr  block (modify if necessary)
+        - ipBlock:
+            # gcloud container clusters describe <YOUR-CLUSTER> --format="value(clusterIpv4Cidr)"
+            cidr: 34.118.224.0/20  # clusterIpv4Cidr block (modify if necessary)
+        - ipBlock:
+            # Not sure if we need this for egress
+            # kubectl get ing cjoc  -o json | jq -r '.status.loadBalancer.ingress[0].ip'
+            cidr: 35.231.77.159/32  # ing IP (modify if necessary)
+    - to:
+        - namespaceSelector: {}  # Allow egress to all namespaces within the cluster
+  ingress:
+    - from:
+        - ipBlock:
+            # Should better be Cluster IP and LB/Ingress IP
+            cidr: 0.0.0.0/0  # Allow traffic from any IP
+  policyTypes:
+    - Egress
+    - Ingress
