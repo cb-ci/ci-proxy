@@ -36,9 +36,7 @@ I recommend to apply these Network Policy [networkpolicy.yaml](k8s-squid/network
 
 # Step1: Helm values
 
-NOTE: 
-* `XX.XX.XX.beescloud.com` is my hostName, it will not work for other installations.
-* You need to substitute `.beescloud.com` with your domain
+NOTE:  `XX.XX.XX.beescloud.com` is my hostName, it will not work for other installations.You need to substitute `.beescloud.com` with your domain
 
 helm values:
 ```
