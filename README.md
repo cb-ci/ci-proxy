@@ -14,7 +14,7 @@ The configuration context are shown below
 
 # Step0: Proxy installation 
 
-I used a [Squid Proxy](k8s-squid/deploy-squid.yaml) and [Kubernetes Network Policy](k8s-squid/networkpolicy.yaml) to test the configuration below (Step1 - Step4)
+I used a [Squid Proxy](k8s-squid/deploy-squid.yaml) to test the configuration below (Step1 - Step4)
 
 Your specific proxy server and port might be different. See [README.md](k8s-squid/README.md) for details and how I set up squid proxy
 
@@ -36,9 +36,7 @@ I recommend to apply these Network Policy [networkpolicy.yaml](k8s-squid/network
 
 # Step1: Helm values
 
-NOTE: 
-* `XX.XX.XX.beescloud.com` is my hostName, it will not work for other installations.
-* You need to substitute `.beescloud.com` with your domain
+NOTE:  `XX.XX.XX.beescloud.com` is my hostName, it will not work for other installations.You need to substitute `.beescloud.com` with your domain
 
 helm values:
 ```
