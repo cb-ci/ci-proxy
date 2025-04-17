@@ -1,0 +1,34 @@
+kind: Pod
+metadata:
+  name: cloudbees-core
+spec:
+  containers:
+    - name: custom-agent
+      image: curlimages/curl:latest
+      # We can read environment vars from ca config map
+#      envFrom:
+#        - configMapRef:
+#            name: configmap-envvars
+      # Or we can adjust the proxy vars like this
+      env:
+        - name: HTTP_PROXY
+          value: http://squid-dev-proxy.squid.svc.cluster.local:3128
+        - name: HTTPS_PROXY
+          value: http://squid-dev-proxy.squid.svc.cluster.local:3128
+        - name: NO_PROXY
+          value: localhost,127.0.0.1,.cluster.local,.beescloud.com
+          # For testing purpose , we can block cloudbees.com
+          # value: localhost,127.0.0.1,.cluster.local,.beescloud.com,.cloudbees.com
+        - name: http_proxy
+          value: http://squid-dev-proxy.squid.svc.cluster.local:3128
+        - name: https_proxy
+          value: http://squid-dev-proxy.squid.svc.cluster.local:3128
+        - name: no_proxy
+          value: localhost,127.0.0.1,.cluster.local,.beescloud.com
+      runAsUser: 1000
+      command:
+        - cat
+      tty: true
+      workingDir: "/home/jenkins/agent"
+      securityContext:
+        runAsUser: 1000
