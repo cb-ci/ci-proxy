@@ -1,12 +1,15 @@
 import java.net.*
 
-def urlString = "http://squid-dev-proxy.squid.svc.cluster.local"
-def proxyHost = "proxy.example.com"
+def urlString = "https://google.com"
+def proxyHost = "squid-dev-proxy.squid.svc.cluster.local"
 def proxyPort = 3128
 
 // Set up the proxy
 System.setProperty("http.proxyHost", proxyHost)
 System.setProperty("http.proxyPort", proxyPort.toString())
+System.setProperty("https.proxyHost", proxyHost)
+System.setProperty("https.proxyPort", proxyPort.toString())
+//System.setProperty("https.nonProxyHosts","google.com")
 
 // Create a URL object
 def url = new URL(urlString)
