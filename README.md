@@ -52,9 +52,9 @@ OperationsCenter:
     - name: NO_PROXY
       value: localhost,127.0.0.1,.svc.cluster.local,.beescloud.com
   JavaOpts:
-     -Dhttps.proxyHost=http://squid-dev-proxy.squid.svc.cluster.local
+     -Dhttps.proxyHost=squid-dev-proxy.squid.svc.cluster.local
      -Dhttps.proxyPort=3128
-     -Dhttp.proxyHost=http://squid-dev-proxy.squid.svc.cluster.local
+     -Dhttp.proxyHost=quid-dev-proxy.squid.svc.cluster.local
      -Dhttp.proxyPort=3128
      -Dhttp.nonProxyHosts=localhost\|127.0.0.1\|*.svc.cluster.local\|*.beescloud.com
 Master:
@@ -62,9 +62,9 @@ Master:
   # These properties will be exposed to https://<CJOC_URL>/manage/masterProvisioning/  -> Global Java Options
   # Global Java options enforced on startup by system property or environment variable MASTER_GLOBAL_JAVA_OPTIONS:
   JavaOpts:
-    -Dhttps.proxyHost=http://squid-dev-proxy.squid.svc.cluster.local
+    -Dhttps.proxyHost=squid-dev-proxy.squid.svc.cluster.local
     -Dhttps.proxyPort=3128
-    -Dhttp.proxyHost=http://squid-dev-proxy.squid.svc.cluster.local
+    -Dhttp.proxyHost=squid-dev-proxy.squid.svc.cluster.local
     -Dhttp.proxyPort=3128
     -Dhttp.nonProxyHosts=localhost\|127.0.0.1\|*.svc.cluster.local\|*.beescloud.com
 
@@ -122,6 +122,27 @@ masterprovisioning:
       HTTP_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
       HTTPS_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
       NO_PROXY=localhost,.svc.cluster.local,.beescloud.com
+masterprovisioning:
+  dockerImageDefinitionConfiguration:
+    images:
+    - imageTag: "cloudbees/cloudbees-core-mm:latest"
+      name: "CloudBees CI - Managed Controller - latest"
+  kubernetes:
+    clusterEndpoints:
+    - id: "default"
+      jenkinsUrl: "http://cjoc.<YOUR_NAMESPACE>.svc.cluster.local/"
+      name: "kubernetes"
+    envVars: |-
+      HTTP_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
+      HTTPS_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
+      NO_PROXY=34.118.224.1,localhost,127.0.0.1,.svc.cluster.local,.flow-training.beescloud.com
+    globalJavaOptions: "...-Dhttps.proxyPort=3128\
+      \ -Dhttp.proxyHost=squid-dev-proxy.squid.svc.cluster.local -Dhttp.proxyPort=3128\
+      \ -Dhttp.nonProxyHosts=localhost\\|127.0.0.1\\|*.svc.cluster.local\\|*.flow-training.beescloud.com"
+    systemProperties: "https.proxyHost=squid-dev-proxy.squid.svc.cluster.local \n\
+      https.proxyPort=3128 \nhttp.proxyHost=squid-dev-proxy.squid.svc.cluster.local\
+      \ \nhttp.proxyPort=3128 \nhttp.nonProxyHosts=localhost\\|127.0.0.1\\|*.svc.cluster.local\\\
+      |*.flow-training.beescloud.com"
 ```
 
 ## Notes:
