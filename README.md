@@ -117,33 +117,18 @@ jenkins:
     port: 3128
 masterprovisioning:
   kubernetes:
-    ....
-    javaOptions: |-
-      -XshowSettings:vm 
-      -XX:+AlwaysPreTouch 
-      -XX:+DisableExplicitGC 
-      -XX:+ParallelRefProcEnabled
-      -XX:+UseStringDeduplication 
-      -XX:+AlwaysActAsServerClassMachine 
-      -Dhudson.slaves.NodeProvisioner.initialDelay=0
-
+    ...
     envVars: |-
-      MASTER_GLOBAL_JAVA_OPTIONS=-Djenkins.security.ManagePermission=true -Djenkins.security.SystemReadPermission=true
       HTTP_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
       HTTPS_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
       NO_PROXY=localhost,.svc.cluster.local,.beescloud.com
-
+      
     globalJavaOptions: |-
+      ...
       -Dhttps.proxyPort=3128
       -Dhttp.proxyHost=squid-dev-proxy.squid.svc.cluster.local
       -Dhttp.proxyPort=3128
       -Dhttp.nonProxyHosts=localhost|127.0.0.1|*.svc.cluster.local|*.flow-training.beescloud.com
-      -Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:latest
-      -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents
-      -Dcom.cloudbees.networking.useSubdomain=false 
-      -Dcom.cloudbees.networking.protocol="https" 
-      -Dcom.cloudbees.networking.hostname="${stage}sda.acaternberg.flow-training.beescloud.com"
-      -Dcom.cloudbees.networking.port=443 -Dcom.cloudbees.networking.operationsCenterName="cjoc"
 
     systemProperties: |-
       https.proxyHost=squid-dev-proxy.squid.svc.cluster.local
