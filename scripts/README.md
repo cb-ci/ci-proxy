@@ -1,11 +1,11 @@
 # Test scripts
 
-this directory contains some groovy test scripts
+this directory contains some test scripts
 
-Can be executed from https://<CI_URL>/script
+Groovy scrpts can be executed from https://<CI_URL>/script
 
 
-
+Run the testpod with
 ```BASH
  kubectl apply -f testPodProxy.yaml
  kubectl logs -f pod/groovy-runner
