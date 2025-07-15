@@ -12,7 +12,7 @@ Run the testpod with
 ```
 
 ```BASH
-➜  scripts git:(main) ✗ kubectl logs -fpod/groovy-runner
+➜  scripts git:(main) ✗ kubectl logs -f pod/groovy-runner
 WARNING: Using incubator modules: jdk.incubator.vector, jdk.incubator.foreign
 HTTP 200 OK
 URL: https://api.github.com/repos/cb-ci-templates/ci-poc-params-update/branches
