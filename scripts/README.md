@@ -1,11 +1,11 @@
 # Test scripts
 
-this directory contains some groovy test scripts
+this directory contains some test scripts
 
-Can be executed from https://<CI_URL>/script
+Groovy scrpts can be executed from https://<CI_URL>/script
 
 
-
+Run the testpod with
 ```BASH
  kubectl apply -f testPodProxy.yaml
  kubectl logs -f pod/groovy-runner
@@ -13,7 +13,7 @@ Can be executed from https://<CI_URL>/script
 ```
 
 ```BASH
-➜  scripts git:(main) ✗ kubectl logs -fpod/groovy-runner
+➜  scripts git:(main) ✗ kubectl logs -f pod/groovy-runner
 WARNING: Using incubator modules: jdk.incubator.vector, jdk.incubator.foreign
 HTTP 200 OK
 URL: https://api.github.com/repos/cb-ci-templates/ci-poc-params-update/branches
