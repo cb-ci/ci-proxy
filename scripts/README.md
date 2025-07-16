@@ -9,6 +9,7 @@ Can be executed from https://<CI_URL>/script
 ```BASH
  kubectl apply -f testPodProxy.yaml
  kubectl logs -f pod/groovy-runner
+ kubectl delete -f testPodProxy.yaml
 ```
 
 ```BASH
