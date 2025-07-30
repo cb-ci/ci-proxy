@@ -7,9 +7,9 @@ def PROXY_HOST     = 'squid-dev-proxy.squid.svc.cluster.local'
 def PROXY_PORT     = 3128
 
 def USE_BASIC_AUTH = true
-def USERNAME       = 'username'
-def PASSWORD       = System.getenv('GIT_PASSWORD') ?: 'changeMe'
-def BEARER_TOKEN   = System.getenv('GIT_TOKEN')  ?: 'tokenValue'
+def USERNAME       = 'USERNAME'
+def PASSWORD       = System.getenv('PASSWORD') ?: 'changeMe'
+def BEARER_TOKEN   = System.getenv('TOKEN')  ?: 'tokenValue'
 
 def CONNECT_TIMEOUT = 5_000
 def READ_TIMEOUT    = 5_000
