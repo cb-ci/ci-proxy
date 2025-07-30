@@ -9,6 +9,7 @@ data:
     
     /* ────────────────────────── CONFIGURATION ─────────────────────────────── */
     def URL_STRING     = 'https://api.github.com/repos/cb-ci-templates/ci-poc-params-update/branches'
+    //  URL_STRING     = "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json?id=core-oc&version=2.504.2.5"
     def PROXY_HOST     = 'squid-dev-proxy.squid.svc.cluster.local'
     def PROXY_PORT     = 3128
     

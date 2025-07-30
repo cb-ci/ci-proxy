@@ -1,6 +1,7 @@
 import java.net.*
 
 def urlString = "https://google.com"
+// urlString = "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json?id=core-oc&version=2.504.2.5"
 def proxyHost = "squid-dev-proxy.squid.svc.cluster.local"
 def proxyPort = 3128
 
