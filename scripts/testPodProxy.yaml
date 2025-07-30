@@ -75,7 +75,7 @@ data:
     } catch (Exception e) {
         println "Exception: ${e.getClass().getName()} - ${e.message}"
         e.printStackTrace()
-        System.exit(1)
+        //System.exit(1)
     } finally {
       try { conn?.inputStream?.close() } catch (Exception ignore) {}
       try { conn?.errorStream?.close() } catch (Exception ignore) {}
