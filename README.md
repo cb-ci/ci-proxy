@@ -99,6 +99,7 @@ Master:
   * mixed with lower case like `http_proxy`,  `https_proxy` , `no_proxy` leads to [UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local](#unknownhostexception-httpsquid-dev-proxysquidsvcclusterlocal)
     * See also [State of proxy variable today](https://about.gitlab.com/blog/2021/01/27/we-need-to-talk-no-proxy/)
   * Missing `HTTP_PROXY`, `HTTPS_PROXY` , `NO_PROXY` leads to connectivity issues between CjoC and Controller  [UnknownHostException http://squid-dev-proxy.squid.svc.cluster.local](#unknownhostexception-httpsquid-dev-proxysquidsvcclusterlocal)
+* See also: https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/client-and-managed-controllers/considerations-for-plugin-installs-when-using-casc-for-controllers
 
 # Step2: CasC Operations Center
 
